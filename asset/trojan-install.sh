@@ -54,7 +54,7 @@ fi
 if [[ $TYPE == 0 ]];then
     CHECKVERSION="https://api.github.com/repos/trojan-gfw/trojan/releases/latest"
 else
-    CHECKVERSION="https://api.github.com/repos/p4gefau1t/trojan-go/releases"
+    CHECKVERSION="https://github.com/fregie/trojan-go/releases"
 fi
 NAME=trojan
 if [[ -z $INSTALL_VERSION ]];then
@@ -71,7 +71,7 @@ if [[ $TYPE == 0 ]];then
     DOWNLOADURL="https://github.com/trojan-gfw/$NAME/releases/download/v$VERSION/$TARBALL"
 else
     [[ $ARCH == x86_64 ]] && TARBALL="trojan-go-linux-amd64.zip" || TARBALL="trojan-go-linux-armv8.zip" 
-    DOWNLOADURL="https://github.com/p4gefau1t/trojan-go/releases/download/v$VERSION/$TARBALL"
+    DOWNLOADURL="https://github.com/fregie/trojan-go/releases/download/v$VERSION/$TARBALL"
 fi
 
 TMPDIR="$(mktemp -d)"
