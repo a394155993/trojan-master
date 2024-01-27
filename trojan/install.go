@@ -181,7 +181,7 @@ func InstallMysql() {
 			mysql.Password = "xeYfY2P4DGYJxmmw"
 			db := mysql.GetDB()
 			if db != nil && db.Ping() == nil {
-				mysql.Database = util.Input("请输入使用的数据库名(不存在可自动创建, 回车使用trojan): ", "trojan")
+				mysql.Database = "trojan"
 				db.Exec(fmt.Sprintf("CREATE DATABASE IF NOT EXISTS %s;", mysql.Database))
 				break
 			} else {
