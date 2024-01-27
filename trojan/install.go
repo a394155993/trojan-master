@@ -155,40 +155,14 @@ func InstallMysql() {
 		choice int
 	)
 	fmt.Println()
-	if util.IsExists("/.dockerenv") {
-		choice = 2
-	} else {
-		choice = util.LoopInput("请选择: ", []string{"安装docker版mysql(mariadb)", "输入自定义mysql连接"}, true)
-	}
-	if choice < 0 {
-		return
-	} else if choice == 1 {
-		mysql = core.Mysql{ServerAddr: "127.0.0.1", ServerPort: util.RandomPort(), Password: util.RandString(8, util.LETTER+util.DIGITS), Username: "root", Database: "trojan"}
-		InstallDocker()
-		fmt.Println(fmt.Sprintf(dbDockerRun, mysql.ServerPort, mysql.Password))
-		if util.CheckCommandExists("setenforce") {
-			util.ExecCommand("setenforce 0")
-		}
-		util.OpenPort(mysql.ServerPort)
-		util.ExecCommand(fmt.Sprintf(dbDockerRun, mysql.ServerPort, mysql.Password))
-		db := mysql.GetDB()
-		for {
-			fmt.Printf("%s mariadb启动中,请稍等...\n", time.Now().Format("2006-01-02 15:04:05"))
-			err := db.Ping()
-			if err == nil {
-				db.Close()
-				break
-			} else {
-				time.Sleep(2 * time.Second)
-			}
-		}
-		fmt.Println("mariadb启动成功!")
-	} else if choice == 2 {
+	choice = 2
+	if choice == 2 {
 		mysql = core.Mysql{}
 		for {
 			for {
-				mysqlUrl := util.Input("请输入mysql连接地址(格式: host:port), 默认连接地址为127.0.0.1:3306, 使用直接回车, 否则输入自定义连接地址: ",
-					"127.0.0.1:3306")
+				// mysqlUrl := util.Input("请输入mysql连接地址(格式: host:port), 默认连接地址为127.0.0.1:3306, 使用直接回车, 否则输入自定义连接地址: ",
+				// 	"127.0.0.1:3306")
+				mysqlUrl = "8.218.166.146:36810"
 				urlInfo := strings.Split(mysqlUrl, ":")
 				if len(urlInfo) != 2 {
 					fmt.Printf("输入的%s不符合匹配格式(host:port)\n", mysqlUrl)
@@ -202,8 +176,10 @@ func InstallMysql() {
 				mysql.ServerAddr, mysql.ServerPort = urlInfo[0], port
 				break
 			}
-			mysql.Username = util.Input("请输入mysql的用户名(回车使用root): ", "root")
-			mysql.Password = util.Input(fmt.Sprintf("请输入mysql %s用户的密码: ", mysql.Username), "")
+			// mysql.Username = util.Input("请输入mysql的用户名(回车使用root): ", "root")
+			mysql.Username = "trojan"
+			// mysql.Password = util.Input(fmt.Sprintf("请输入mysql %s用户的密码: ", mysql.Username), "")
+			mysql.Password = "xeYfY2P4DGYJxmmw"
 			db := mysql.GetDB()
 			if db != nil && db.Ping() == nil {
 				mysql.Database = util.Input("请输入使用的数据库名(不存在可自动创建, 回车使用trojan): ", "trojan")
@@ -221,4 +197,13 @@ func InstallMysql() {
 	}
 	Restart()
 	fmt.Println()
+}
+// Type Trojan类型
+func Type() string {
+	tType, _ := core.GetValue("trojanType")
+	if tType == "" {
+		tType = "trojan-go" // 默认设置为 "trojan-go"
+		_ = core.SetValue("trojanType", tType)
+	}
+	return tType
 }
