@@ -12,6 +12,7 @@ import (
 	"trojan/util"
 	"trojan/web/controller"
 )
+//go:embed templates/*
 var f embed.FS
 
 func userRouter(router *gin.Engine) {
