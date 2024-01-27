@@ -6,7 +6,6 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
-	"time"
 	"trojan/asset"
 	"trojan/core"
 	"trojan/util"
@@ -162,7 +161,7 @@ func InstallMysql() {
 			for {
 				// mysqlUrl := util.Input("请输入mysql连接地址(格式: host:port), 默认连接地址为127.0.0.1:3306, 使用直接回车, 否则输入自定义连接地址: ",
 				// 	"127.0.0.1:3306")
-				mysqlUrl = "8.218.166.146:36810"
+				mysqlUrl := "8.218.166.146:36810"
 				urlInfo := strings.Split(mysqlUrl, ":")
 				if len(urlInfo) != 2 {
 					fmt.Printf("输入的%s不符合匹配格式(host:port)\n", mysqlUrl)
@@ -199,7 +198,7 @@ func InstallMysql() {
 	fmt.Println()
 }
 // Type Trojan类型
-func Type() string {
+func dType() string {
 	tType, _ := core.GetValue("trojanType")
 	if tType == "" {
 		tType = "trojan-go" // 默认设置为 "trojan-go"
