@@ -1,8 +1,8 @@
 #!/bin/bash
 
-github_token="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"
+github_token="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"
 
-project="laochaofeng/trojan-master"
+project="a394155993/trojan-master"
 
 #获取当前的这个脚本所在绝对路径
 shell_path=$(cd `dirname $0`; pwd)
