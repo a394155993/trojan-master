@@ -164,7 +164,12 @@ if ! [[ -f "$CONFIGPATH" ]] || prompt "The server config already exists in $CONF
         "key": "",
         "cert": "",
         "ca": ""
-    }
+    },
+      "api": {
+        "enabled": true,
+        "api_addr": "127.0.0.1",
+        "api_port": 10000
+      }
 }
 EOF
 else
