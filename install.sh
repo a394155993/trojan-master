@@ -9,9 +9,9 @@ remove=0
 
 update=0
 
-download_url="https://github.com/Jrohy/trojan/releases/download/"
+download_url="https://github.com/a394155993/trojan-master/releases/download/"
 
-version_check="https://api.github.com/repos/Jrohy/trojan/releases/latest"
+version_check="https://api.github.com/repos/a394155993/trojan-master/releases/latest"
 
 service_url="https://raw.githubusercontent.com/Jrohy/trojan/master/asset/trojan-web.service"
 
